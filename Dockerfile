@@ -1,8 +1,8 @@
 FROM jsurf/rpi-raspbian:latest
-MAINTAINER finalformat <chrisf1031@gmail.com>
+MAINTAINER reeganm <>
 
 # Jenkins version
-ENV JENKINS_VERSION 2.222.1
+ENV JENKINS_VERSION 2.235.1
 
 # Other env variables
 ENV JENKINS_HOME /var/jenkins_home
