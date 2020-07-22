@@ -1,4 +1,4 @@
-FROM jsurf/rpi-raspbian:latest
+FROM balenalib/rpi-raspbian:buster
 MAINTAINER reeganm <>
 
 # Jenkins version
@@ -13,10 +13,12 @@ RUN ["cross-build-start"]
 
 # Install dependencies
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends curl openjdk-8-jdk \
+  && apt-get install -y --no-install-recommends curl openjdk-8-jdk wget ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
-# fix https certificate issue with curl?
+# godaddy certificate is missing somehow
+RUN mkdir -p /usr/local/share/ca-certificates
+RUN wget https://ssl-ccp.godaddy.com/repository/gdroot-g2.crt -o /usr/local/share/ca-certificates/gdroot-g2.crt
 RUN update-ca-certificates
 
 # Get Jenkins
