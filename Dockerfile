@@ -16,6 +16,9 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends curl openjdk-8-jdk \
   && rm -rf /var/lib/apt/lists/*
 
+# fix https certificate issue with jenkins?
+sudo update-ca-certificates
+
 # Get Jenkins
 RUN curl -fL -o /opt/jenkins.war https://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/{$JENKINS_VERSION}/jenkins-war-{$JENKINS_VERSION}.war
 
